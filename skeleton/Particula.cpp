@@ -39,7 +39,6 @@ void Particula::verletIntegrate(double d)
 	pos.p = (2.f * pos.p) - posAnt.p + acc * (d * d);
 	vel = (pos.p - posAnt.p) * (1.f / (d * 2.f));
 
-	vel = vel * std::pow(dampi, d);
 	acc = Vector3D(0, 0, 0);
 
 	posAnt = prev;
