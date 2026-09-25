@@ -23,6 +23,7 @@
 #include "SceneManager.h"
 #include "EmptyScene.h"
 #include "P0_Scene.h"
+#include "P1_Scene.h"
 
 #include <foundation/PxSimpleTypes.h>
 #include <PxPhysicsVersion.h> // <- Macros for PhysX version checking
@@ -100,6 +101,7 @@ void initPhysics(bool interactive)
 	// Registrar las prácticas/escenas del curso
 	SceneManager::instance().registerScene<EmptyScene>("EscenaVacia");
 	SceneManager::instance().registerScene<P0_Scene>("Escena0");
+	SceneManager::instance().registerScene<P1_Scene>("Escena1");
 	
 	// Cargar la escena inicial
 	SceneManager::instance().changeScene("EscenaVacia");
