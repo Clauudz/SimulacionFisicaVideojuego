@@ -5,11 +5,12 @@
 #include "Vector3D.h"
 #include <array>
 #include "Particula.h"
+#include "Proyectil.h"
 
 class P1_Scene : public Scene
 {
 public:
-    explicit P1_Scene(std::string name) : Scene(std::move(name)), par({0,0,0}, {0, 5000, 0}, 0.99f) {}
+    explicit P1_Scene(std::string name) : Scene(std::move(name)) {}
 
     void init() override;
 
@@ -20,6 +21,6 @@ public:
     void cleanup() override;
 
 private:
-    Particula par;
+    std::vector<Proyectil*> balas;
 };
 

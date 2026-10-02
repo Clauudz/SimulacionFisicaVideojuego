@@ -6,18 +6,19 @@ class RenderItem;
 class Particula
 {
 public:
-	Particula(Vector3D posi, Vector3D ac, float damp);
-	~Particula();
+	Particula(Vector3D posi, Vector3D ac, float damp, float mass);
+	virtual ~Particula();
 
-	void integrate(double d);
-	void semiIntegrate(double d);
-	void verletIntegrate(double d);
+	virtual void integrate(double d);
+	virtual void semiIntegrate(double d);
+	virtual void verletIntegrate(double d);
 
-private:
+protected:
 
 	physx::PxTransform pos;
 	Vector3D vel;
 	Vector3D acc;
+	float masa;
 	float dampi;
 	RenderItem* m_item = nullptr;
 
