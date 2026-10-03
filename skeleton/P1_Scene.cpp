@@ -16,7 +16,16 @@ void P1_Scene::keyPress(unsigned char key, const physx::PxTransform& camera)
 	Vector3D cameraDir = GetCamera()->getDir().getNormalized();
 	switch (key) {
 	case 'p' :
-		balas.push_back(new Proyectil(camera.p, cameraDir * 380.f, cameraDir * 50.f, 10.f));
+		//dessert eagle
+		balas.push_back(new Proyectil(camera.p, cameraDir * 380.f, cameraDir * 50.f, 10.f, 0.77f));
+		break;
+	case 'o':
+		//cañon
+		balas.push_back(new Proyectil(camera.p, cameraDir * 400.f, cameraDir * 50.f, 10000.f, 0.89f));
+		break;
+	case 'i':
+		//cañon de riel
+		balas.push_back(new Proyectil(camera.p, cameraDir * 2000.f, cameraDir * 50.f, 320.f, 0.99f));
 		break;
 	}
 }

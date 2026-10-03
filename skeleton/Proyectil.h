@@ -9,7 +9,7 @@ private:
 	float gravedadSim;
 	float masaSim;
 public:
-	Proyectil(Vector3D pos, Vector3D velReal, Vector3D velSim, float masa);
+	Proyectil(Vector3D pos, Vector3D velReal, Vector3D velSim, float masa, float damp);
 	void ajustaMasaYGravedad(Vector3D vReal, Vector3D vSim);
 
 	void semiIntegrate(double d) override;
