@@ -1,6 +1,7 @@
 #include "Particula.h"
 
-Particula::Particula(Vector3D posi, Vector3D ac, float damp, float mass) : pos(posi), acc(ac), dampi(damp), posAnt(posi), masa(mass)
+Particula::Particula(Vector3D posi, Vector3 velo, Vector3D ac, float damp, float mass, double lifeTime) : pos(posi), acc(ac), dampi(damp), posAnt(posi), masa(mass), vel(velo),
+	tiempoVida(lifeTime)
 {
 	physx::PxShape* shape = CreateShape(physx::PxSphereGeometry(1.f));
 	m_item = new RenderItem(shape, &pos, Vector4(0.3f, 1.f, 0.63f, 1.f));
@@ -21,6 +22,7 @@ void Particula::integrate(double d)
 
 	vel = vel * std::pow(dampi, d);
 	acc = Vector3D(0, 0, 0);
+	tiempoVida -= d;
 }
 
 void Particula::semiIntegrate(double d)
@@ -30,6 +32,7 @@ void Particula::semiIntegrate(double d)
 
 	pos.p = pos.p + vel * d;	
 	acc = Vector3D(0, 0, 0);
+	tiempoVida -= d;
 }
 
 void Particula::verletIntegrate(double d)
@@ -42,4 +45,10 @@ void Particula::verletIntegrate(double d)
 	acc = Vector3D(0, 0, 0);
 
 	posAnt = prev;
+	tiempoVida -= d;
+}
+
+bool Particula::estaViva() const
+{
+	return tiempoVida > 0;
 }
