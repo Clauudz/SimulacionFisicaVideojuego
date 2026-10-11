@@ -1,9 +1,9 @@
 #include "Particula.h"
 
-Particula::Particula(Vector3D posi, Vector3 velo, Vector3D ac, float damp, float mass, double lifeTime) : pos(posi), acc(ac), dampi(damp), posAnt(posi), masa(mass), vel(velo),
+Particula::Particula(Vector3D posi, Vector3D velo, Vector3D ac, float damp, float mass, double lifeTime) : pos(posi), acc(ac), dampi(damp), posAnt(posi), masa(mass), vel(velo),
 	tiempoVida(lifeTime)
 {
-	physx::PxShape* shape = CreateShape(physx::PxSphereGeometry(1.f));
+	physx::PxShape* shape = CreateShape(physx::PxSphereGeometry(0.5f));
 	m_item = new RenderItem(shape, &pos, Vector4(0.3f, 1.f, 0.63f, 1.f));
 
 	m_item->addReference();
@@ -51,4 +51,9 @@ void Particula::verletIntegrate(double d)
 bool Particula::estaViva() const
 {
 	return tiempoVida > 0;
+}
+
+void Particula::aplicarFuerza(Vector3D fuerza)
+{
+	acc += fuerza;
 }

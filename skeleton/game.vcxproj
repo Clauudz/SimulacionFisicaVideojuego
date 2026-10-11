@@ -262,10 +262,12 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="callbacks.cpp" />
+    <ClCompile Include="Distribucion.h" />
     <ClCompile Include="Generador.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="P0_Scene.cpp" />
     <ClCompile Include="P1_Scene.cpp" />
+    <ClCompile Include="P2_Scene.cpp" />
     <ClCompile Include="Particula.cpp" />
     <ClCompile Include="Proyectil.cpp" />
     <ClCompile Include="RenderUtils.cpp" />
@@ -282,6 +284,7 @@
     <ClInclude Include="Generador.h" />
     <ClInclude Include="P0_Scene.h" />
     <ClInclude Include="P1_Scene.h" />
+    <ClInclude Include="P2_Scene.h" />
     <ClInclude Include="Particula.h" />
     <ClInclude Include="Proyectil.h" />
     <ClInclude Include="RenderUtils.hpp" />

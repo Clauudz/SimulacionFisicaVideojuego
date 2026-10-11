@@ -10,12 +10,14 @@ private:
 	Vector3D vel;
 
 	Distribucion* dVel;
+	Distribucion* dPos;
 	Distribucion* tVida;
 
 	Particula* m;
 	Distribucion* dist;
 public:
-	Generador(Particula* modelo, Vector3D velocidad, physx::PxTransform posicion, Distribucion* d, Distribucion* v, Distribucion* tiempoVida);
+	Generador(Particula* modelo, Vector3D velocidad, physx::PxTransform posicion, Distribucion* d, Distribucion* v, Distribucion* p, Distribucion* tiempoVida);
+	~Generador();
 	std::vector<Particula*> generar(double dt);
 };
 

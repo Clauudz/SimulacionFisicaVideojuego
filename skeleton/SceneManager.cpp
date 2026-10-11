@@ -60,6 +60,10 @@ void SceneManager::keyPress(unsigned char key, const physx::PxTransform& cameraT
         changeScene("Escena1");
         return;
     }
+    else if (key == '2') {
+        changeScene("Escena2");
+        return;
+    }
 
     // Si no es una tecla de navegación global, se la pasamos a la escena activa
     if (m_currentScene != nullptr) {

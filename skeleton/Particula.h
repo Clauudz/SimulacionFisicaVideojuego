@@ -6,7 +6,7 @@ class RenderItem;
 class Particula
 {
 public:
-	Particula(Vector3D posi, Vector3 velo, Vector3D ac, float damp, float mass, double lifeTime);
+	Particula(Vector3D posi, Vector3D velo, Vector3D ac, float damp, float mass, double lifeTime);
 	virtual ~Particula();
 
 	virtual void integrate(double d);
@@ -18,6 +18,7 @@ public:
 	physx::PxTransform getPos() const { return pos; }
 	float getMasa() const { return masa; }
 	float getDampi() const { return dampi; }
+	void aplicarFuerza(Vector3D fuerza);
 
 protected:
 

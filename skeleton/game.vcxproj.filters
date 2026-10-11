@@ -18,6 +18,8 @@
     <ClCompile Include="Proyectil.cpp" />
     <ClCompile Include="SistemaParticulas.cpp" />
     <ClCompile Include="Generador.cpp" />
+    <ClCompile Include="Distribucion.h" />
+    <ClCompile Include="P2_Scene.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="core.hpp" />
@@ -39,6 +41,7 @@
     <ClInclude Include="Proyectil.h" />
     <ClInclude Include="SistemaParticulas.h" />
     <ClInclude Include="Generador.h" />
+    <ClInclude Include="P2_Scene.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Render">
