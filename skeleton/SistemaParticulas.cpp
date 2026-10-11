@@ -22,16 +22,19 @@ void SistemaParticulas::update(double dt) {
 		par->semiIntegrate(dt);
 	}
 
-	auto it = std::remove_if(particulas.begin(), particulas.end(),
-		[](Particula* par) {
-			return !par->estaViva();
-		});
+	auto it = particulas.begin();
 
-	for (auto i = it; i != particulas.end(); i++) {
-		delete *i;
+	while (it != particulas.end()) {
+		Particula* par = *it;
+
+		if (!par->estaViva()) {
+			delete par;
+			it = particulas.erase(it);
+		}
+		else {
+			++it;
+		}
 	}
-
-	particulas.erase(it, particulas.end());
 
 	for (Generador* gen : generadores) {
 		std::vector<Particula*> p = gen->generar(dt);

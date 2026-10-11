@@ -3,10 +3,10 @@
 Particula::Particula(Vector3D posi, Vector3D velo, Vector3D ac, float damp, float mass, double lifeTime) : pos(posi), acc(ac), dampi(damp), posAnt(posi), masa(mass), vel(velo),
 	tiempoVida(lifeTime)
 {
-	physx::PxShape* shape = CreateShape(physx::PxSphereGeometry(0.5f));
+	physx::PxShape* shape = CreateShape(physx::PxSphereGeometry(0.2f));
 	m_item = new RenderItem(shape, &pos, Vector4(0.3f, 1.f, 0.63f, 1.f));
 
-	m_item->addReference();
+	//m_item->addReference();
 }
 
 Particula::~Particula()

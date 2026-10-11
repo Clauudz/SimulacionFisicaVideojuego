@@ -6,7 +6,7 @@ void P2_Scene::init()
 	Particula* pM1 = new Particula(Vector3D(0, 0, 0), Vector3D(0, 0, 0), Vector3D(0, 0, 0), 0.99f, 1.f, 0.0);
 
 	Distribucion* dM1 = new DistribucionGaussiana(1.f, 0.3f); // dist
-	Distribucion* dM2 = new DistribucionGaussiana(1.f, 0.4f); //dVel
+	Distribucion* dM2 = new DistribucionGaussiana(5.f, 0.4f); //dVel
 	Distribucion* dM3 = new DistribucionGaussiana(0.f, 0.05f); // dPos
 	Distribucion* dM4 = new DistribucionGaussiana(2.f, 0.3f); // tVida
 
