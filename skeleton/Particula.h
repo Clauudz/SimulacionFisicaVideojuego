@@ -16,8 +16,6 @@ public:
 	bool estaViva() const;
 
 	physx::PxTransform getPos() const { return pos; }
-	float getMasa() const { return masa; }
-	float getDampi() const { return dampi; }
 	void aplicarFuerza(Vector3D fuerza);
 
 protected:

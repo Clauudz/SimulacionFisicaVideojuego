@@ -13,10 +13,12 @@ private:
 	Distribucion* dPos;
 	Distribucion* tVida;
 
-	Particula* m;
+	float masaModelo;
+	float dampModelo;
+
 	Distribucion* dist;
 public:
-	Generador(Particula* modelo, Vector3D velocidad, physx::PxTransform posicion, Distribucion* d, Distribucion* v, Distribucion* p, Distribucion* tiempoVida);
+	Generador(float masa, float damp, Vector3D velocidad, physx::PxTransform posicion, Distribucion* d, Distribucion* v, Distribucion* p, Distribucion* tiempoVida);
 	~Generador();
 	std::vector<Particula*> generar(double dt);
 };
