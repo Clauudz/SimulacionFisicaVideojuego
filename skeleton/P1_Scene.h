@@ -10,7 +10,7 @@
 class P1_Scene : public Scene
 {
 public:
-    explicit P1_Scene(std::string name) : Scene(std::move(name)) {}
+    explicit P1_Scene(std::string name) : Scene(std::move(name)), vel(400.f) {}
 
     void init() override;
 
@@ -22,5 +22,9 @@ public:
 
 private:
     std::vector<Proyectil*> balas;
+    int vel;
+
+    void sumaVel() { vel += 50.f; }
+    void restaVel() { vel -= 50.f; }
 };
 

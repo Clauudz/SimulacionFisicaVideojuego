@@ -1,4 +1,5 @@
 #include "P1_Scene.h"
+#include <iostream>
 
 void P1_Scene::init()
 {
@@ -17,15 +18,23 @@ void P1_Scene::keyPress(unsigned char key, const physx::PxTransform& camera)
 	switch (key) {
 	case 'p' :
 		//dessert eagle
-		balas.push_back(new Proyectil(camera.p, cameraDir * 380.f, cameraDir * 50.f, 10.f, 0.77f));
+		balas.push_back(new Proyectil(camera.p, cameraDir * vel, cameraDir * 30.f, 10.f, 0.99f));
 		break;
 	case 'o':
 		//cañon
-		balas.push_back(new Proyectil(camera.p, cameraDir * 400.f, cameraDir * 50.f, 10000.f, 0.89f));
+		balas.push_back(new Proyectil(camera.p, cameraDir * vel, cameraDir * 50.f, 10000.f, 0.99f));
 		break;
 	case 'i':
 		//cañon de riel
-		balas.push_back(new Proyectil(camera.p, cameraDir * 2000.f, cameraDir * 50.f, 320.f, 0.99f));
+		balas.push_back(new Proyectil(camera.p, cameraDir * vel, cameraDir * 70.f, 320.f, 0.99f));
+		break;
+	case 'm':
+		sumaVel();
+		std::cout << "Velocidad sumada, ahora: " << vel << std::endl;
+		break;
+	case 'n':
+		restaVel();
+		std::cout << "Velocidad restada, ahora: " << vel << std::endl;
 		break;
 	}
 }
