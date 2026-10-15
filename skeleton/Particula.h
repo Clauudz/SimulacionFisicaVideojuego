@@ -13,9 +13,12 @@ public:
 	virtual void semiIntegrate(double d);
 	virtual void verletIntegrate(double d);
 
+	virtual std::vector<Particula*> generarHijas() { return {}; }
+
 	bool estaViva() const;
 
 	physx::PxTransform getPos() const { return pos; }
+	Vector3D getVel() const { return vel; }
 	void aplicarFuerza(Vector3D fuerza);
 
 protected:

@@ -3,6 +3,7 @@
 #include "Generador.h"
 #include <vector>
 
+class ParticulaJerarquica;
 class SistemaParticulas
 {
 private:

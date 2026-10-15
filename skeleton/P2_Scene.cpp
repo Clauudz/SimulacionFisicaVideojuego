@@ -25,16 +25,24 @@ void P2_Scene::init()
 	//sistema.addGenerador(genNiebla);
 
 	//explosion
-	Distribucion* dE1 = new DistribucionGaussiana(100.f, 0.3f); // dist
-	Distribucion* dE2 = new DistribucionGaussiana(0.f, 7.f); //dVel
-	Distribucion* dE3 = new DistribucionGaussiana(0.f, 0.1f); // dPos
-	Distribucion* dE4 = new DistribucionGaussiana(0.8f, 0.2f); // tVida
+	//Distribucion* dE1 = new DistribucionGaussiana(100.f, 0.3f); // dist
+	//Distribucion* dE2 = new DistribucionGaussiana(0.f, 7.f); //dVel
+	//Distribucion* dE3 = new DistribucionGaussiana(0.f, 0.1f); // dPos
+	//Distribucion* dE4 = new DistribucionGaussiana(0.8f, 0.2f); // tVida
 
-	physx::PxTransform posExplosion(physx::PxVec3(0.0f, 50.0f, 0.0f));
-	Generador* genExplosion = new Generador(0.99f, 1.f, Vector3D(0, 0.02f, 0.01f), posExplosion, dE1, dE2, dE3, dE4);
-	
-	std::vector<Particula*> par = genExplosion->generar(0.0);
-	sistema.addParticulas(par);
+	//physx::PxTransform posExplosion(physx::PxVec3(0.0f, 50.0f, 0.0f));
+	//Generador* genExplosion = new Generador(0.99f, 1.f, Vector3D(0, 0.02f, 0.01f), posExplosion, dE1, dE2, dE3, dE4);
+	//
+	//std::vector<Particula*> par = genExplosion->generar(0.0);
+	//sistema.addParticulas(par);
+
+	//fuegos artificiales
+	Distribucion* dF1 = new DistribucionGaussiana(0.f, 7.f); //dVel
+	Distribucion* dF2 = new DistribucionGaussiana(25.f, 0.3f); // cantidad
+
+	ParticulaJerarquica* p = new ParticulaJerarquica(Vector3D(0.0f, 10.0f, 0.0f), Vector3D(0, 25.f, 0.01f), Vector3D(0.f,0.f,0.f), 0.99f, 1.f, 1.5, 1, dF1, dF2);
+
+	sistema.addParticulas({p});
 }
 
 void P2_Scene::update(double dt)

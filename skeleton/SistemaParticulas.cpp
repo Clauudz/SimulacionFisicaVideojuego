@@ -1,4 +1,5 @@
 #include "sistemaParticulas.h"
+#include "ParticulaJerarquica.h"
 
 SistemaParticulas::SistemaParticulas() : gravedad(Vector3D(0,-10,0))
 {
@@ -22,12 +23,16 @@ void SistemaParticulas::update(double dt) {
 		par->semiIntegrate(dt);
 	}
 
-	auto it = particulas.begin();
+	std::vector<Particula*> nuevasHijas; //fuegos artificiales
 
+	auto it = particulas.begin();
 	while (it != particulas.end()) {
 		Particula* par = *it;
 
 		if (!par->estaViva()) {
+			std::vector<Particula*> p = par->generarHijas();
+			nuevasHijas.insert(nuevasHijas.end(), p.begin(), p.end());
+
 			delete par;
 			it = particulas.erase(it);
 		}
@@ -35,6 +40,8 @@ void SistemaParticulas::update(double dt) {
 			++it;
 		}
 	}
+
+	particulas.insert(particulas.end(), nuevasHijas.begin(), nuevasHijas.end());
 
 	for (Generador* gen : generadores) {
 		std::vector<Particula*> p = gen->generar(dt);

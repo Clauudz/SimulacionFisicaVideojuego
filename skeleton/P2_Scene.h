@@ -9,6 +9,7 @@
 #include "SistemaParticulas.h"
 #include "Distribucion.h"
 #include "Generador.h"
+#include "ParticulaJerarquica.h"
 
 class P2_Scene : public Scene
 {

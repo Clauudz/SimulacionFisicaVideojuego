@@ -20,6 +20,7 @@
     <ClCompile Include="Generador.cpp" />
     <ClCompile Include="Distribucion.h" />
     <ClCompile Include="P2_Scene.cpp" />
+    <ClCompile Include="ParticulaJerarquica.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="core.hpp" />
@@ -42,6 +43,7 @@
     <ClInclude Include="SistemaParticulas.h" />
     <ClInclude Include="Generador.h" />
     <ClInclude Include="P2_Scene.h" />
+    <ClInclude Include="ParticulaJerarquica.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Render">
