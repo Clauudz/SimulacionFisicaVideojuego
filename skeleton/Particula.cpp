@@ -55,5 +55,5 @@ bool Particula::estaViva() const
 
 void Particula::aplicarFuerza(Vector3D fuerza)
 {
-	acc += fuerza;
+	acc += fuerza / masa;
 }

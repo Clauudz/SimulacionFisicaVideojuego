@@ -21,6 +21,7 @@
     <ClCompile Include="Distribucion.h" />
     <ClCompile Include="P2_Scene.cpp" />
     <ClCompile Include="ParticulaJerarquica.cpp" />
+    <ClCompile Include="P3_Scene.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="core.hpp" />
@@ -44,6 +45,8 @@
     <ClInclude Include="Generador.h" />
     <ClInclude Include="P2_Scene.h" />
     <ClInclude Include="ParticulaJerarquica.h" />
+    <ClInclude Include="P3_Scene.h" />
+    <ClInclude Include="ForceGenerator.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Render">

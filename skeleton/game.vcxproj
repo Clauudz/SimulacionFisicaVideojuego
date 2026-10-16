@@ -268,6 +268,7 @@
     <ClCompile Include="P0_Scene.cpp" />
     <ClCompile Include="P1_Scene.cpp" />
     <ClCompile Include="P2_Scene.cpp" />
+    <ClCompile Include="P3_Scene.cpp" />
     <ClCompile Include="Particula.cpp" />
     <ClCompile Include="ParticulaJerarquica.cpp" />
     <ClCompile Include="Proyectil.cpp" />
@@ -282,10 +283,12 @@
     <ClInclude Include="callbacks.hpp" />
     <ClInclude Include="core.hpp" />
     <ClInclude Include="EmptyScene.h" />
+    <ClInclude Include="ForceGenerator.h" />
     <ClInclude Include="Generador.h" />
     <ClInclude Include="P0_Scene.h" />
     <ClInclude Include="P1_Scene.h" />
     <ClInclude Include="P2_Scene.h" />
+    <ClInclude Include="P3_Scene.h" />
     <ClInclude Include="Particula.h" />
     <ClInclude Include="ParticulaJerarquica.h" />
     <ClInclude Include="Proyectil.h" />

@@ -51,6 +51,10 @@ public:
 		return Vector3D(x * n, y * n, z * n);
 	}
 
+	Vector3D operator/(float n) const {
+		return Vector3D(x / n, y / n, z / n);
+	}
+
 	Vector3D& operator+=(const Vector3D& v) {
 		x += v.x;
 		y += v.y;
