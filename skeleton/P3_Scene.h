@@ -5,6 +5,12 @@
 #include "Vector3D.h"
 #include <array>
 
+#include "Particula.h"
+#include "SistemaParticulas.h"
+#include "ForceGenerator.h"
+#include "Distribucion.h"
+#include "Generador.h"
+
 class P3_Scene : public Scene
 {
 public:
@@ -18,5 +24,5 @@ public:
 
     void cleanup() override;
 private:
-    
+    SistemaParticulas sistema;
 };

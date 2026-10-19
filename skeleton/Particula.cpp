@@ -1,9 +1,10 @@
 #include "Particula.h"
+#include "ForceGenerator.h"
 
 Particula::Particula(Vector3D posi, Vector3D velo, Vector3D ac, float damp, float mass, double lifeTime) : pos(posi), acc(ac), dampi(damp), posAnt(posi), masa(mass), vel(velo),
 	tiempoVida(lifeTime)
 {
-	physx::PxShape* shape = CreateShape(physx::PxSphereGeometry(0.2f));
+	physx::PxShape* shape = CreateShape(physx::PxSphereGeometry(0.4f));
 	m_item = new RenderItem(shape, &pos, Vector4(0.3f, 1.f, 0.63f, 1.f));
 
 	//m_item->addReference();
@@ -15,8 +16,12 @@ Particula::~Particula()
 	m_item = nullptr;
 }
 
-void Particula::integrate(double d)
+void Particula::integrate(double d, double tTotal)
 {
+	for (ForceGenerator* fg : fuerzas) {
+		fg->aplicaFuerzaAhora(this, tTotal);
+	}
+
 	pos.p = pos.p + vel * d; // pos.p es la pos en la matriz
 	vel = vel + acc * d;
 
@@ -25,8 +30,12 @@ void Particula::integrate(double d)
 	tiempoVida -= d;
 }
 
-void Particula::semiIntegrate(double d)
+void Particula::semiIntegrate(double d, double tTotal)
 {
+	for (ForceGenerator* fg : fuerzas) {
+		fg->aplicaFuerzaAhora(this, tTotal);
+	}
+
 	vel = vel + acc * d;
 	vel = vel * std::pow(dampi, d);
 
@@ -35,8 +44,12 @@ void Particula::semiIntegrate(double d)
 	tiempoVida -= d;
 }
 
-void Particula::verletIntegrate(double d)
+void Particula::verletIntegrate(double d, double tTotal)
 {
+	for (ForceGenerator* fg : fuerzas) {
+		fg->aplicaFuerzaAhora(this, tTotal);
+	}
+
 	physx::PxTransform prev = pos;
 
 	pos.p = (2.f * pos.p) - posAnt.p + acc * (d * d);
@@ -56,4 +69,9 @@ bool Particula::estaViva() const
 void Particula::aplicarFuerza(Vector3D fuerza)
 {
 	acc += fuerza / masa;
+}
+
+void Particula::addFuerza(ForceGenerator* f)
+{
+	fuerzas.push_back(f);
 }

@@ -15,8 +15,8 @@ void Proyectil::ajustaMasaYGravedad(Vector3D vReal, Vector3D vSim)
 	gravedadSim = ((vS * vS) * GRAVEDAD) / (vR * vR);
 }
 
-void Proyectil::semiIntegrate(double d)
+void Proyectil::semiIntegrate(double d, double tTotal)
 {
 	acc += Vector3D(0.f, gravedadSim, 0.f);
-	Particula::semiIntegrate(d);
+	Particula::semiIntegrate(d, tTotal);
 }

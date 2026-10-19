@@ -1,7 +1,7 @@
 #include "sistemaParticulas.h"
 #include "ParticulaJerarquica.h"
 
-SistemaParticulas::SistemaParticulas() : gravedad(Vector3D(0,-10,0))
+SistemaParticulas::SistemaParticulas() : tiempoTotal(0.0)
 {
 }
 
@@ -14,13 +14,16 @@ SistemaParticulas::~SistemaParticulas()
 	for (Generador* gen : generadores) {
 		delete gen;
 	}
+
+	for (ForceGenerator* fg : fuerzas) {
+		delete fg;
+	}
 }
 
 void SistemaParticulas::update(double dt) {
 
 	for (Particula* par : particulas) {
-		par->aplicarFuerza(gravedad); // separar (en otro for) si en el fururo hay una fuerza q depende d otras particulas
-		par->semiIntegrate(dt);
+		par->semiIntegrate(dt, tiempoTotal);
 	}
 
 	std::vector<Particula*> nuevasHijas; //fuegos artificiales
@@ -47,6 +50,8 @@ void SistemaParticulas::update(double dt) {
 		std::vector<Particula*> p = gen->generar(dt);
 		particulas.insert(particulas.end(), p.begin(), p.end());
 	}
+
+	tiempoTotal += dt;
 }
 
 void SistemaParticulas::addGenerador(Generador* g)
@@ -57,4 +62,9 @@ void SistemaParticulas::addGenerador(Generador* g)
 void SistemaParticulas::addParticulas(const std::vector<Particula*>& p)
 {
 	particulas.insert(particulas.end(), p.begin(), p.end());
+}
+
+void SistemaParticulas::addForceGenerator(ForceGenerator* f)
+{
+	fuerzas.push_back(f);
 }

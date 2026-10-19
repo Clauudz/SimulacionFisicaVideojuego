@@ -8,7 +8,7 @@ void P1_Scene::init()
 void P1_Scene::update(double dt)
 {
 	for (Proyectil* par : balas) {
-		par->semiIntegrate(dt);
+		par->semiIntegrate(dt, 0.0);
 	}
 }
 

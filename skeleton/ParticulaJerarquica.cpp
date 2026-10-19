@@ -1,8 +1,8 @@
 #include "ParticulaJerarquica.h"
 
 ParticulaJerarquica::ParticulaJerarquica(Vector3D posi, Vector3D velo, Vector3D ac, float damp, float mass,
-	double lifeTime, int nivel, Distribucion* velHijas, Distribucion* cantidadHijas) :
-	Particula(posi, velo, ac, damp, mass, lifeTime), nivel(nivel), vHijas(velHijas), cantHijas(cantidadHijas)
+	double lifeTime, int nivel, Distribucion* velHijas, Distribucion* cantidadHijas, const std::vector<ForceGenerator*>& fH) :
+	Particula(posi, velo, ac, damp, mass, lifeTime), nivel(nivel), vHijas(velHijas), cantHijas(cantidadHijas), fuerzasHijas(fH)
 {
 }
 
@@ -15,8 +15,12 @@ std::vector<Particula*> ParticulaJerarquica::generarHijas()
 	for (int i = 0; i < nHijas; i++) {
 		Vector3D vFinal = Vector3D(vel.x + vHijas->siguiente(), vel.y + vHijas->siguiente(), vel.z + vHijas->siguiente());
 
-		ParticulaJerarquica* parti = new ParticulaJerarquica(pos.p, vFinal, Vector3D(0.f, 0.f, 0.f), dampi, masa, 0.8f, nivel+1, vHijas, cantHijas);
+		ParticulaJerarquica* parti = new ParticulaJerarquica(pos.p, vFinal, Vector3D(0.f, 0.f, 0.f), dampi, masa, 0.8f, nivel+1, vHijas, cantHijas, fuerzasHijas);
 		hijas.push_back(parti);
+
+		for (ForceGenerator* fg : fuerzasHijas) {
+			parti->addFuerza(fg);
+		}
 	}
 
 	return hijas;

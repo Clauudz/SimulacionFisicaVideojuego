@@ -2,8 +2,9 @@
 #include <cmath>
 #include <algorithm>
 
-Generador::Generador(float masa, float damp, Vector3D velocidad, physx::PxTransform posicion, Distribucion* d, Distribucion* v, Distribucion* p, Distribucion* tiempoVida) :
-	pos(posicion), vel(velocidad), dVel(v), dPos(p), tVida(tiempoVida), masaModelo(masa), dampModelo(damp), dist(d)
+Generador::Generador(float masa, float damp, Vector3D velocidad, physx::PxTransform posicion,
+	Distribucion* d, Distribucion* v, Distribucion* p, Distribucion* tiempoVida, const std::vector<ForceGenerator*>& f) :
+	pos(posicion), vel(velocidad), dVel(v), dPos(p), tVida(tiempoVida), masaModelo(masa), dampModelo(damp), dist(d), fuerzas(f)
 {
 }
 
@@ -27,6 +28,10 @@ std::vector<Particula*> Generador::generar(double dt)
 
 		Particula* parti = new Particula(pFinal, vFinal, Vector3D(0.f, 0.f, 0.f), dampModelo, masaModelo, tVida->siguiente());
 		particulasGeneredas.push_back(parti);
+
+		for (ForceGenerator* fg : fuerzas) {
+			parti->addFuerza(fg);
+		}
 	}
 
 	return particulasGeneredas;

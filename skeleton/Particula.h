@@ -3,15 +3,18 @@
 #include "RenderUtils.hpp"
 
 class RenderItem;
+class ForceGenerator;
 class Particula
 {
+private:
+	std::vector<ForceGenerator*> fuerzas;
 public:
 	Particula(Vector3D posi, Vector3D velo, Vector3D ac, float damp, float mass, double lifeTime);
 	virtual ~Particula();
 
-	virtual void integrate(double d);
-	virtual void semiIntegrate(double d);
-	virtual void verletIntegrate(double d);
+	virtual void integrate(double d, double tTotal);
+	virtual void semiIntegrate(double d, double tTotal);
+	virtual void verletIntegrate(double d, double tTotal);
 
 	virtual std::vector<Particula*> generarHijas() { return {}; }
 
@@ -19,7 +22,9 @@ public:
 
 	physx::PxTransform getPos() const { return pos; }
 	Vector3D getVel() const { return vel; }
+	float getMass() const { return masa; }
 	void aplicarFuerza(Vector3D fuerza);
+	void addFuerza(ForceGenerator* f);
 
 protected:
 
