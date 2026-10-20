@@ -26,19 +26,36 @@ void P3_Scene::init()
 	//sistema.addGenerador(genNiebla);
 
 	// particulas con viento. Ejercicio 2
-	ForceGenerator* g3 = new GravedadGenerator({ 0.f,-10.f,0.f }); //gravedad
-	ForceGenerator* g4 = new VientoGenerator({ 5.f, 0.0f, 0.0f }, 2.f, { 0.f, 20.f, 0.f }, 15.f); //viento
+	//ForceGenerator* g3 = new GravedadGenerator({ 0.f,-10.f,0.f }); //gravedad
+	//ForceGenerator* g4 = new VientoGenerator({ 5.f, 0.0f, 0.0f }, 2.f, { 0.f, 20.f, 0.f }, 15.f); //viento
 
-	Particula* p1 = new Particula({-2.f, 50.f, 0.f}, {0.f,0.f,0.f}, {0.f,0.f,0.f}, 0.99f, 1.f, 1000.0);
-	Particula* p2 = new Particula({2.f, 50.f, 0.f}, {0.f,0.f,0.f}, {0.f,0.f,0.f}, 0.99f, 10.f, 1000.0);
+	//Particula* p1 = new Particula({-2.f, 50.f, 0.f}, {0.f,0.f,0.f}, {0.f,0.f,0.f}, 0.99f, 1.f, 1000.0);
+	//Particula* p2 = new Particula({2.f, 50.f, 0.f}, {0.f,0.f,0.f}, {0.f,0.f,0.f}, 0.99f, 10.f, 1000.0);
 
-	p1->addFuerza(g3);
-	p1->addFuerza(g4);
+	//p1->addFuerza(g3);
+	//p1->addFuerza(g4);
 
-	p2->addFuerza(g3);
-	p2->addFuerza(g4);
+	//p2->addFuerza(g3);
+	//p2->addFuerza(g4);
 
-	sistema.addParticulas({ p1, p2 });
+	//sistema.addParticulas({ p1, p2 });
+
+	// tornado. Ejercicio 3
+	Distribucion* dN1n2 = new DistribucionGaussiana(5.f, 0.3f); // dist
+	Distribucion* dN2n2 = new DistribucionGaussiana(0.02f, 0.03f); //dVel
+	Distribucion* dN3n2 = new DistribucionGaussiana(2.f, 5.f); // dPos
+	Distribucion* dN4n2 = new DistribucionGaussiana(5.f, 0.3f); // dTime
+
+	physx::PxTransform posNiebla2(physx::PxVec3(0.0f, 20.0f, 0.0f));
+
+	ForceGenerator* g5 = new TorbellinoGenerator(2.f, { 0.0f,20.f,0.0f }, 20.f, 0.5f, 10.f); //torbellino
+	ForceGenerator* g6 = new GravedadGenerator({ 0.f,-10.f,0.f }); //gravedad
+	Generador* genNiebla2 = new Generador(0.99f, 1.f, Vector3D(0, 1.f, 0.01f), posNiebla2, dN1n2, dN2n2, dN3n2, dN4n2, { g5, g6 });
+
+	sistema.addGenerador(genNiebla2);
+
+	//explosion. Ejercicio 4
+
 }
 
 void P3_Scene::update(double dt)
