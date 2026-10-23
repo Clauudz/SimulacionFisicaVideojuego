@@ -22,5 +22,7 @@ public:
 	void addGenerador(Generador* g);
 	void addParticulas(const std::vector<Particula*>& p);
 	void addForceGenerator(ForceGenerator* f);
+
+	void dispararExplosion(Vector3D centro, float K, float R, double tau);
 };
 

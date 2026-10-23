@@ -68,3 +68,12 @@ void SistemaParticulas::addForceGenerator(ForceGenerator* f)
 {
 	fuerzas.push_back(f);
 }
+
+void SistemaParticulas::dispararExplosion(Vector3D centro, float K, float R, double tau)
+{
+	ForceGenerator* f = new ExplosionGenerator(K, centro, R, tau, tiempoTotal);
+
+	for (Particula* par : particulas) {
+		par->addFuerza(f);
+	}
+}

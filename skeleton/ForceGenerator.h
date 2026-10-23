@@ -2,6 +2,8 @@
 #include "Particula.h"
 
 #include <iostream>
+#include <cmath>
+#include <float.h>
 
 class ForceGenerator {
 public:
@@ -63,5 +65,23 @@ public:
 
 class ExplosionGenerator : public ForceGenerator
 {
+private:
+	float K;
+	Vector3D centro;
+	float R;
+	double tau;
+	double tInicio;
 
+public:
+	ExplosionGenerator(float intensidad, Vector3D c, float r, double tConst, double tIni) :
+		K(intensidad), centro(c), R(r), tau(tConst), tInicio(tIni) {}
+	void aplicaFuerzaAhora(Particula* par, double tTotal) override {
+		Vector3D diff = par->getPos().p - centro;
+		float r = diff.magnitude();
+		if (r < R) {
+			double t = tTotal - tInicio;
+			Vector3D fuerza = diff.normalize() * K / (r * r) * std::exp( - (t / tau));
+			par->aplicarFuerza(fuerza);
+		}
+	}
 };
