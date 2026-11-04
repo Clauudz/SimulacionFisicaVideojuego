@@ -36,7 +36,7 @@ void P2_Scene::init()
 	// ForceGenerator* g3 = new GravedadGenerator({ 0.f,-10.f,0.f }); //gravedad
 	//Generador* genExplosion = new Generador(0.99f, 1.f, Vector3D(0, 0.02f, 0.01f), posExplosion, dE1, dE2, dE3, dE4, {g3});
 	//
-	//std::vector<Particula*> par = genExplosion->generar(0.0);
+	//std::vector<Particula*> par = genExplosion->generar();
 	//sistema.addParticulas(par);
 
 	//fuegos artificiales

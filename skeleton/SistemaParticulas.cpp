@@ -23,7 +23,8 @@ SistemaParticulas::~SistemaParticulas()
 void SistemaParticulas::update(double dt) {
 
 	for (Particula* par : particulas) {
-		par->semiIntegrate(dt, tiempoTotal);
+		if (usarEuler) par->integrate(dt, tiempoTotal);
+		else par->semiIntegrate(dt, tiempoTotal);
 	}
 
 	std::vector<Particula*> nuevasHijas; //fuegos artificiales
@@ -47,7 +48,7 @@ void SistemaParticulas::update(double dt) {
 	particulas.insert(particulas.end(), nuevasHijas.begin(), nuevasHijas.end());
 
 	for (Generador* gen : generadores) {
-		std::vector<Particula*> p = gen->generar(dt);
+		std::vector<Particula*> p = gen->generar();
 		particulas.insert(particulas.end(), p.begin(), p.end());
 	}
 
@@ -72,6 +73,8 @@ void SistemaParticulas::addForceGenerator(ForceGenerator* f)
 void SistemaParticulas::dispararExplosion(Vector3D centro, float K, float R, double tau)
 {
 	ForceGenerator* f = new ExplosionGenerator(K, centro, R, tau, tiempoTotal);
+
+	addForceGenerator(f);
 
 	for (Particula* par : particulas) {
 		par->addFuerza(f);

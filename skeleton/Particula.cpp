@@ -1,10 +1,10 @@
 #include "Particula.h"
 #include "ForceGenerator.h"
 
-Particula::Particula(Vector3D posi, Vector3D velo, Vector3D ac, float damp, float mass, double lifeTime) : pos(posi), acc(ac), dampi(damp), posAnt(posi), masa(mass), vel(velo),
+Particula::Particula(Vector3D posi, Vector3D velo, Vector3D ac, float damp, float mass, double lifeTime, bool caja) : pos(posi), acc(ac), dampi(damp), posAnt(posi), masa(mass), vel(velo),
 	tiempoVida(lifeTime)
 {
-	physx::PxShape* shape = CreateShape(physx::PxSphereGeometry(0.4f));
+	physx::PxShape* shape = caja ? CreateShape(physx::PxBoxGeometry(1.f, 1.f, 1.f)) : CreateShape(physx::PxSphereGeometry(0.4f));
 	m_item = new RenderItem(shape, &pos, Vector4(0.3f, 1.f, 0.63f, 1.f));
 
 	//m_item->addReference();
@@ -19,7 +19,9 @@ Particula::~Particula()
 void Particula::integrate(double d, double tTotal)
 {
 	for (ForceGenerator* fg : fuerzas) {
-		fg->aplicaFuerzaAhora(this, tTotal);
+		if (fg->estaActivo()) {
+			fg->aplicaFuerzaAhora(this, tTotal);
+		}
 	}
 
 	pos.p = pos.p + vel * d; // pos.p es la pos en la matriz
@@ -33,7 +35,9 @@ void Particula::integrate(double d, double tTotal)
 void Particula::semiIntegrate(double d, double tTotal)
 {
 	for (ForceGenerator* fg : fuerzas) {
-		fg->aplicaFuerzaAhora(this, tTotal);
+		if (fg->estaActivo()) {
+			fg->aplicaFuerzaAhora(this, tTotal);
+		}
 	}
 
 	vel = vel + acc * d;
@@ -47,7 +51,9 @@ void Particula::semiIntegrate(double d, double tTotal)
 void Particula::verletIntegrate(double d, double tTotal)
 {
 	for (ForceGenerator* fg : fuerzas) {
-		fg->aplicaFuerzaAhora(this, tTotal);
+		if (fg->estaActivo()) {
+			fg->aplicaFuerzaAhora(this, tTotal);
+		}
 	}
 
 	physx::PxTransform prev = pos;

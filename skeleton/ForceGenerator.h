@@ -6,9 +6,15 @@
 #include <float.h>
 
 class ForceGenerator {
+protected:
+	bool activo = true;
 public:
 	virtual ~ForceGenerator() = default;
 	virtual void aplicaFuerzaAhora(Particula* par, double tTotal) = 0;
+
+	void setActivo(bool a) { activo = a; }
+	void toggle() { activo = !activo; }
+	bool estaActivo() const { return activo; }
 };
 
 class GravedadGenerator : public ForceGenerator
@@ -85,3 +91,104 @@ public:
 		}
 	}
 };
+
+//class MuelleGenerator : public ForceGenerator {
+//protected:
+//	double k;
+//	double reposo;
+//	Particula* other;
+//
+//	void aplicaMuelle(Particula* par, const Vector3D& destino) {
+//		Vector3D d = destino - Vector3D(par->getPos().p);
+//		float longitud = d.magnitude();
+//		if (longitud < 1e-6f) return;
+//		par->aplicarFuerza(d.normalize() * ((longitud - reposo) * k));
+//	}
+//public:
+//	MuelleGenerator(double _k, double repo, Particula* otra) : k(_k), reposo(repo), other(otra) {}
+//	void aplicaFuerzaAhora(Particula* par, double tTotal) override {
+//		aplicaMuelle(par, other->getPos().p);
+//	}
+//	inline void setK(double nuevaK) { k = nuevaK; }
+//	float getK() const { return k; }
+//};
+//
+//class MuelleAncladoGenerator : public MuelleGenerator {
+//private:
+//	Vector3D ancla;
+//	physx::PxTransform anclaT;
+//	RenderItem* anclaItem;
+//public:
+//	MuelleAncladoGenerator(float k, float longReposo, Vector3D posAncla) : MuelleGenerator(k, longReposo, nullptr), ancla(posAncla),
+//		anclaT(physx::PxVec3(posAncla.x, posAncla.y, posAncla.z))
+//	{
+//		anclaItem = new RenderItem(CreateShape(physx::PxBoxGeometry(0.5f, 0.5f, 0.5f)), &anclaT, Vector4(1.f, 0.f, 0.f, 1.f));
+//	}
+//	~MuelleAncladoGenerator() { anclaItem->release(); }
+//
+//	void aplicaFuerzaAhora(Particula* par, double tTotal) override {
+//		aplicaMuelle(par, ancla);
+//	}
+//};
+//
+//// solo tira al estirarse
+//class GomaElasticaGenerator : public MuelleGenerator
+//{
+//public:
+//	GomaElasticaGenerator(float k, float longReposo, Particula* otra)
+//		: MuelleGenerator(k, longReposo, otra) {
+//	}
+//
+//	void aplicaFuerzaAhora(Particula* par, double tTotal) override {
+//		Vector3D d = other->getPos().p - par->getPos().p;
+//		if (d.magnitude() > reposo)
+//			aplicaMuelle(par, other->getPos().p);
+//	}
+//};
+//
+////fuerza al pulsar una tecla
+//class ImpulsoGenerator : public ForceGenerator
+//{
+//private:
+//	Vector3D fuerza;
+//	double duracion;
+//	double tInicio;
+//public:
+//	ImpulsoGenerator(Vector3D f, double dur) : fuerza(f), duracion(dur), tInicio(-1e9) {}
+//
+//	void disparar(double tActual) { tInicio = tActual; }
+//
+//	void aplicaFuerzaAhora(Particula* par, double tTotal) override {
+//		if (tTotal - tInicio < duracion)
+//			par->aplicarFuerza(fuerza);
+//	}
+//};
+//
+//class FlotacionGenerator : public ForceGenerator {
+//private:
+//	float h0; //nivel del agua
+//	float altura;// lado del cubo
+//	float volumen;
+//	float densidad;
+//	physx::PxTransform aguaT;
+//	RenderItem* aguaItem;
+//public:
+//	FlotacionGenerator(float nivelAgua, float alturaObj, float vol, float densidadL = 1000.f) : h0(nivelAgua), altura(alturaObj), volumen(vol), densidad(densidadL),
+//		aguaT(physx::PxVec3(0.f, nivelAgua, 0.f)) {
+//		aguaItem = new RenderItem(CreateShape(physx::PxBoxGeometry(30.f, 0.05f, 30.f)), &aguaT, Vector4(0.f, 0.3f, 1.f, 1.f));
+//	}
+//	~FlotacionGenerator() { aguaItem->release(); }
+//
+//	void setVolumen(float vol) { volumen = vol; }
+//	float getVolumen() const { return volumen; }
+//
+//	void aplicaFuerzaAhora(Particula* par, double tTotal) override {
+//		float h = par->getPos().p.y;
+//		float inmerso;
+//
+//		if (h - h0 > altura * 0.5) inmerso = 0.f;
+//		else if (h0 - h > altura * 0.5) inmerso = 1.f;
+//		else inmerso = (h0 - h) / altura + 0.5;
+//		par->aplicarFuerza({ 0.f, densidad * volumen * inmerso * 9.8, 0.f });
+//	}
+//};

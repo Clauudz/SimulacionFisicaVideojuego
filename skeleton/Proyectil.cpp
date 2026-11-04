@@ -1,6 +1,6 @@
 #include "Proyectil.h"
 
-Proyectil::Proyectil(Vector3D pos, Vector3D velReal, Vector3D velSim, float masa, float damp) : Particula(pos, velSim, {0,0,0}, damp, masa, 1000.0),
+Proyectil::Proyectil(Vector3D pos, Vector3D velReal, Vector3D velSim, float masa, float damp) : Particula(pos, velSim, {0,0,0}, damp, masaSim, 1000.0),
 masaSim(0.f), gravedadSim(0.f)
 {
 	ajustaMasaYGravedad(velReal, velSim);

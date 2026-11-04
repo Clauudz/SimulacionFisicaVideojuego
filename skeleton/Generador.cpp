@@ -16,7 +16,7 @@ Generador::~Generador()
 	delete dist;
 }
 
-std::vector<Particula*> Generador::generar(double dt)
+std::vector<Particula*> Generador::generar()
 {
 	std::vector<Particula*> particulasGeneredas;
 

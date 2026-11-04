@@ -9,7 +9,7 @@ class Particula
 private:
 	std::vector<ForceGenerator*> fuerzas;
 public:
-	Particula(Vector3D posi, Vector3D velo, Vector3D ac, float damp, float mass, double lifeTime);
+	Particula(Vector3D posi, Vector3D velo, Vector3D ac, float damp, float mass, double lifeTime, bool caja = false);
 	virtual ~Particula();
 
 	virtual void integrate(double d, double tTotal);
@@ -23,6 +23,7 @@ public:
 	physx::PxTransform getPos() const { return pos; }
 	Vector3D getVel() const { return vel; }
 	float getMass() const { return masa; }
+	void setMass(float m) { masa = m; }
 	void aplicarFuerza(Vector3D fuerza);
 	void addFuerza(ForceGenerator* f);
 

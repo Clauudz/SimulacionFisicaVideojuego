@@ -25,4 +25,9 @@ public:
     void cleanup() override;
 private:
     SistemaParticulas sistema;
+
+    ForceGenerator* gravedad = nullptr;
+    ForceGenerator* flotabilidad = nullptr;
+    ForceGenerator* viento = nullptr;
+    ForceGenerator* torbellino = nullptr;
 };

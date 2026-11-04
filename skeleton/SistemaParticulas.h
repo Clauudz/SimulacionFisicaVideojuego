@@ -14,6 +14,7 @@ private:
 
 	//Vector3D gravedad;
 	double tiempoTotal;
+	bool usarEuler = false;
 public:
 	SistemaParticulas();
 	~SistemaParticulas();
@@ -24,5 +25,8 @@ public:
 	void addForceGenerator(ForceGenerator* f);
 
 	void dispararExplosion(Vector3D centro, float K, float R, double tau);
+
+	void setEuler(bool b) { usarEuler = b; }
+	double getTiempoTotal() const { return tiempoTotal; }
 };
 

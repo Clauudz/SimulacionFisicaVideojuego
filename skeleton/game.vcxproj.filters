@@ -22,6 +22,7 @@
     <ClCompile Include="P2_Scene.cpp" />
     <ClCompile Include="ParticulaJerarquica.cpp" />
     <ClCompile Include="P3_Scene.cpp" />
+    <ClCompile Include="P4_Scene.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="core.hpp" />
@@ -47,6 +48,7 @@
     <ClInclude Include="ParticulaJerarquica.h" />
     <ClInclude Include="P3_Scene.h" />
     <ClInclude Include="ForceGenerator.h" />
+    <ClInclude Include="P4_Scene.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Render">

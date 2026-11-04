@@ -24,6 +24,6 @@ public:
 	Generador(float masa, float damp, Vector3D velocidad, physx::PxTransform posicion,
 		Distribucion* d, Distribucion* v, Distribucion* p, Distribucion* tiempoVida, const std::vector<ForceGenerator*>& f);
 	~Generador();
-	std::vector<Particula*> generar(double dt);
+	std::vector<Particula*> generar();
 };
 
