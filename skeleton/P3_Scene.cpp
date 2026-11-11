@@ -47,7 +47,7 @@ void P3_Scene::init()
 	Distribucion* dN4n2 = new DistribucionGaussiana(5.f, 0.3f); // dTime
 
 	physx::PxTransform posNiebla2(physx::PxVec3(0.0f, 20.0f, 0.0f));
-	Generador* genNiebla2 = new Generador(0.99f, 1.f, Vector3D(0, 1.f, 0.01f), posNiebla2, dN1n2, dN2n2, dN3n2, dN4n2, { torbellino, gravedad });
+	Generador* genNiebla2 = new Generador(0.99f, 1.f, Vector3D(0, 1.f, 0.01f), posNiebla2, dN1n2, dN2n2, dN3n2, dN4n2, { torbellino, gravedad, viento});
 
 	sistema.addGenerador(genNiebla2);
 

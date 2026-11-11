@@ -14,7 +14,7 @@ void P2_Scene::init()
 
 	//sistema.addGenerador(genManguera);
 
-	//niebla
+	////niebla
 	//Distribucion* dN1 = new DistribucionGaussiana(1.f, 0.3f); // dist
 	//Distribucion* dN2 = new DistribucionGaussiana(0.02f, 0.03f); //dVel
 	//Distribucion* dN3 = new DistribucionGaussiana(0.f, 5.f); // dPos
@@ -26,7 +26,7 @@ void P2_Scene::init()
 	//																									 // gravedad y sea como lluvia o niebla
 	//sistema.addGenerador(genNiebla);
 
-	//explosion
+	////explosion
 	//Distribucion* dE1 = new DistribucionGaussiana(100.f, 0.3f); // dist
 	//Distribucion* dE2 = new DistribucionGaussiana(0.f, 7.f); //dVel
 	//Distribucion* dE3 = new DistribucionGaussiana(0.f, 0.1f); // dPos
