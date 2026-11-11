@@ -25,8 +25,33 @@ public:
     void cleanup() override;
 private:
     SistemaParticulas sistema;
-    /*MuelleAncladoGenerator* muelle = nullptr;
+
+    // actividad 1
+    MuelleAncladoGenerator* muelle = nullptr;
+
+    //actividad 2
+    MuelleGenerator* muelleAB = nullptr;//fuerza sobre A, hacia B
+    MuelleGenerator* muelleBA = nullptr; //fuerza sobre B, hacia A
+    GomaElasticaGenerator* gomaCD = nullptr;//fuerza sobre C, hacia D
+    GomaElasticaGenerator* gomaDC = nullptr; //fuerza sobre D, hacia C
+
+    GravedadGenerator* gravedad = nullptr;
+    VientoGenerator* viento = nullptr;
     ImpulsoGenerator* impulso = nullptr;
+
     float k = 10.f;
-    bool euler = false;*/
+    bool euler = false;
+
+    void aplicaK();
+
+    // Actividad 3
+    FlotacionGenerator* flotacion = nullptr;
+    VientoGenerator* rozamiento = nullptr;   // opcional: rozamiento del líquido
+    Particula* cubo = nullptr;
+    float masa = 4000.f;
+    float volumen = 8.f;
+    float densidad = 1000.f;
+    float nivelAgua = 20.f;
+
+    void imprimeEstado();
 };

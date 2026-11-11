@@ -9,7 +9,7 @@ class Particula
 private:
 	std::vector<ForceGenerator*> fuerzas;
 public:
-	Particula(Vector3D posi, Vector3D velo, Vector3D ac, float damp, float mass, double lifeTime, bool caja = false);
+	Particula(Vector3D posi, Vector3D velo, Vector3D ac, float damp, float mass, double lifeTime, bool caja = false, float lado = 0.4f);
 	virtual ~Particula();
 
 	virtual void integrate(double d, double tTotal);

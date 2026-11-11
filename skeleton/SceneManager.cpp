@@ -69,7 +69,7 @@ void SceneManager::keyPress(unsigned char key, const physx::PxTransform& cameraT
         return;
     }
     else if (key == '4') {
-        changeScene("Escena3");
+        changeScene("Escena4");
         return;
     }
 

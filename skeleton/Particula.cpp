@@ -1,10 +1,10 @@
 #include "Particula.h"
 #include "ForceGenerator.h"
 
-Particula::Particula(Vector3D posi, Vector3D velo, Vector3D ac, float damp, float mass, double lifeTime, bool caja) : pos(posi), acc(ac), dampi(damp), posAnt(posi), masa(mass), vel(velo),
+Particula::Particula(Vector3D posi, Vector3D velo, Vector3D ac, float damp, float mass, double lifeTime, bool caja, float lado) : pos(posi), acc(ac), dampi(damp), posAnt(posi), masa(mass), vel(velo),
 	tiempoVida(lifeTime)
 {
-	physx::PxShape* shape = caja ? CreateShape(physx::PxBoxGeometry(1.f, 1.f, 1.f)) : CreateShape(physx::PxSphereGeometry(0.4f));
+	physx::PxShape* shape = caja ? CreateShape(physx::PxBoxGeometry(1.f, 1.f, 1.f)) : CreateShape(physx::PxSphereGeometry(lado));
 	m_item = new RenderItem(shape, &pos, Vector4(0.3f, 1.f, 0.63f, 1.f));
 
 	//m_item->addReference();
