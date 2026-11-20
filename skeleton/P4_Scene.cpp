@@ -64,7 +64,7 @@ void P4_Scene::init()
 	flotacion = new FlotacionGenerator(nivelAgua, lado, volumen, densidad);
 
 	//EL rozamiento es viscoso solo dentro del agua y es una esfera muy grande enla q su punto mas alto coincide con la superficie
-	// Viento con velocidad 0 = resistencia al movimiento.
+	// Viento con velocidad 0 = resistencia al movimiento
 	rozamiento = new VientoGenerator({ 0.f, 0.f, 0.f }, 2000.f, { 0.f, nivelAgua - 100.f, 0.f }, 100.f);
 
 	// Cubo empezando por encima del agua para que caiga y oscile

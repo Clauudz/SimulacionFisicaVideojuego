@@ -23,6 +23,30 @@
     <ClCompile Include="ParticulaJerarquica.cpp" />
     <ClCompile Include="P3_Scene.cpp" />
     <ClCompile Include="P4_Scene.cpp" />
+    <ClCompile Include="Practica5\EjerciciosCuaterniones.cpp">
+      <Filter>Practica5</Filter>
+    </ClCompile>
+    <ClCompile Include="Practica5\EscenaJoints.cpp">
+      <Filter>Practica5</Filter>
+    </ClCompile>
+    <ClCompile Include="Practica5\EscenaSolidosRigidos.cpp">
+      <Filter>Practica5</Filter>
+    </ClCompile>
+    <ClCompile Include="Practica5\GravedadSR.cpp">
+      <Filter>Practica5</Filter>
+    </ClCompile>
+    <ClCompile Include="Practica5\SistemaSolidoRigido.cpp">
+      <Filter>Practica5</Filter>
+    </ClCompile>
+    <ClCompile Include="Practica5\SolidoRigido.cpp">
+      <Filter>Practica5</Filter>
+    </ClCompile>
+    <ClCompile Include="Practica5\TorbellinoSR.cpp">
+      <Filter>Practica5</Filter>
+    </ClCompile>
+    <ClCompile Include="Practica5\VientoSR.cpp">
+      <Filter>Practica5</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="core.hpp" />
@@ -49,10 +73,41 @@
     <ClInclude Include="P3_Scene.h" />
     <ClInclude Include="ForceGenerator.h" />
     <ClInclude Include="P4_Scene.h" />
+    <ClInclude Include="Practica5\RegistroFuerzasSR.hpp" />
+    <ClInclude Include="Practica5\EjerciciosCuaterniones.h">
+      <Filter>Practica5</Filter>
+    </ClInclude>
+    <ClInclude Include="Practica5\EscenaSolidosRigidos.h">
+      <Filter>Practica5</Filter>
+    </ClInclude>
+    <ClInclude Include="Practica5\EscenaJoints.h">
+      <Filter>Practica5</Filter>
+    </ClInclude>
+    <ClInclude Include="Practica5\GeneradorFuerzaSR.h">
+      <Filter>Practica5</Filter>
+    </ClInclude>
+    <ClInclude Include="Practica5\GravedadSR.h">
+      <Filter>Practica5</Filter>
+    </ClInclude>
+    <ClInclude Include="Practica5\SistemaSolidoRigido.h">
+      <Filter>Practica5</Filter>
+    </ClInclude>
+    <ClInclude Include="Practica5\SolidoRigido.h">
+      <Filter>Practica5</Filter>
+    </ClInclude>
+    <ClInclude Include="Practica5\TorbellinoSR.h">
+      <Filter>Practica5</Filter>
+    </ClInclude>
+    <ClInclude Include="Practica5\VientoSR.h">
+      <Filter>Practica5</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Render">
       <UniqueIdentifier>{d04b4f9f-5a69-465e-8070-25c6d0bcd3c2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Practica5">
+      <UniqueIdentifier>{c9cc540e-b73a-455e-8505-1e818ea303d6}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

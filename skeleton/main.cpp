@@ -27,6 +27,8 @@
 #include "P2_Scene.h"
 #include "P3_Scene.h"
 #include "P4_Scene.h"
+#include "Practica5/EscenaSolidosRigidos.h"
+#include "Practica5/EjerciciosCuaterniones.h"
 
 #include <foundation/PxSimpleTypes.h>
 #include <PxPhysicsVersion.h> // <- Macros for PhysX version checking
@@ -54,6 +56,8 @@ PxDefaultCpuDispatcher*	gDispatcher = NULL;
 PxScene*				gScene      = NULL;
 ContactReportCallback gContactReportCallback;
 
+EscenaSolidosRigidos gEscenaP5;
+EjerciciosCuaterniones gEjerciciosP5;
 // Global variables for physics timing. We use a fixed timestep for physics simulation, and accumulate time to determine when to step the physics simulation.
 double gPhysicsTimeAccumulator = 0.0;
 const double gFixedTimestep = 1.0 / 60.0;
@@ -111,6 +115,10 @@ void initPhysics(bool interactive)
 	
 	// Cargar la escena inicial
 	SceneManager::instance().changeScene("EscenaVacia");
+
+
+	gEscenaP5.init(gPhysics, gScene);
+	gEjerciciosP5.init(gPhysics, gScene);
 	
 }
 
@@ -130,9 +138,10 @@ void stepPhysics(bool interactive, double t)
 	// This loop allows for multiple physics steps if the accumulated time exceeds the fixed timestep
 	while (gPhysicsTimeAccumulator >= gFixedTimestep)
 	{
+		gEscenaP5.update(static_cast<float>(gFixedTimestep));
 		// simulate() arranca la simulación de forma asíncrona en el hilo de físicas
 		gScene->simulate(static_cast<PxReal>(gFixedTimestep));
-		SceneManager::instance().update(gFixedTimestep);
+		//SceneManager::instance().update(gFixedTimestep);
 
 		// fetchResults(true) bloquea el hilo de renderizado hasta que la física termine.
 		// En prácticas avanzadas es vital para que el renderizado no lea datos corruptos.
@@ -147,6 +156,9 @@ void stepPhysics(bool interactive, double t)
 void cleanupPhysics(bool interactive)
 {
 	PX_UNUSED(interactive);
+
+	gEscenaP5.cleanup();
+	gEjerciciosP5.cleanup();
 	 
 	// Clean scene and dispatcher first to avoid memory leaks
 	if (gScene) {
@@ -192,6 +204,9 @@ void cleanupPhysics(bool interactive)
 void keyPress(unsigned char key, const PxTransform& camera)
 {
 	PX_UNUSED(camera);
+
+	gEscenaP5.keyPress(key);
+	gEjerciciosP5.keyPress(key);
 
 	SceneManager::instance().keyPress(key, camera);
 }
