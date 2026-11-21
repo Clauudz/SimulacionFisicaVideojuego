@@ -7,7 +7,7 @@ void P4_Scene::init()
 	//muelle = new MuelleAncladoGenerator(k, 10.f, { 0.f,40.f,0.f });
 	//impulso = new ImpulsoGenerator({ 100.f,0.f,0.f }, 0.2);
 
-	//Particula* p1 = new Particula({ 0.f, 30.f, 0.f }, { 0.f,0.f,0.f }, { 0.f,0.f,0.f }, 0.99f, 1.f, 1000.0);
+	//Particula* p1 = new Particula({ 0.f, 30.f, 0.f }, { 0.f,0.f,0.f }, { 0.f,0.f,0.f }, 1.f, 1.f, 1000.0);
 	//p1->addFuerza(g1);
 	//p1->addFuerza(muelle);
 	//p1->addFuerza(impulso);
@@ -27,16 +27,16 @@ void P4_Scene::init()
 	//impulso = new ImpulsoGenerator({ 0.f, 0.f, 300.f }, 0.2);
 
 	//// Primeras 2 particulas: muelle normal, la distancia inicial 20 > reposo 10 q es cuando esta estirado
-	//Particula* a = new Particula({ -20.f, 30.f, 0.f }, { 0.f,0.f,0.f }, { 0.f,0.f,0.f }, 0.99f, 1.f, 1000.0);
-	//Particula* b = new Particula({ -20.f, 10.f, 0.f }, { 0.f,0.f,0.f }, { 0.f,0.f,0.f }, 0.99f, 1.f, 1000.0);
+	//Particula* a = new Particula({ -20.f, 30.f, 0.f }, { 0.f,0.f,0.f }, { 0.f,0.f,0.f }, 1.f, 1.f, 1000.0);
+	//Particula* b = new Particula({ -20.f, 10.f, 0.f }, { 0.f,0.f,0.f }, { 0.f,0.f,0.f }, 1.f, 1.f, 1000.0);
 	//muelleAB = new MuelleGenerator(k, 10.0, b);
 	//muelleBA = new MuelleGenerator(k, 10.0, a);
 	//a->addFuerza(muelleAB);
 	//b->addFuerza(muelleBA);
 
 	////Segundas 2 particulas: goma elástica con las mismas condiciones para comparar
-	//Particula* c = new Particula({ 20.f, 30.f, 0.f }, { 0.f,0.f,0.f }, { 0.f,0.f,0.f }, 0.99f, 1.f, 1000.0);
-	//Particula* d = new Particula({ 20.f, 10.f, 0.f }, { 0.f,0.f,0.f }, { 0.f,0.f,0.f }, 0.99f, 1.f, 1000.0);
+	//Particula* c = new Particula({ 20.f, 30.f, 0.f }, { 0.f,0.f,0.f }, { 0.f,0.f,0.f }, 1.f, 1.f, 1000.0);
+	//Particula* d = new Particula({ 20.f, 10.f, 0.f }, { 0.f,0.f,0.f }, { 0.f,0.f,0.f }, 1.f, 1.f, 1000.0);
 	//gomaCD = new GomaElasticaGenerator(k, 10.f, d);
 	//gomaDC = new GomaElasticaGenerator(k, 10.f, c);
 	//c->addFuerza(gomaCD);
@@ -68,7 +68,7 @@ void P4_Scene::init()
 	rozamiento = new VientoGenerator({ 0.f, 0.f, 0.f }, 2000.f, { 0.f, nivelAgua - 100.f, 0.f }, 100.f);
 
 	// Cubo empezando por encima del agua para que caiga y oscile
-	cubo = new Particula({ 0.f, nivelAgua + 5.f, 0.f }, { 0.f,0.f,0.f }, { 0.f,0.f,0.f }, 0.99f, masa, 1000.0, true, lado);
+	cubo = new Particula({ 0.f, nivelAgua + 5.f, 0.f }, { 0.f,0.f,0.f }, { 0.f,0.f,0.f }, 1.f, masa, 1000.0, true, lado);
 	cubo->addFuerza(gravedad);
 	cubo->addFuerza(flotacion);
 	cubo->addFuerza(rozamiento);
