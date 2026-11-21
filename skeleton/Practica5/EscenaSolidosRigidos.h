@@ -21,4 +21,7 @@ protected:
 	SolidoRigido* _suelo;
 	SolidoRigido* _bloqueado; // Actividad 3: solido con la traslacion bloqueada, inercia automatica de PhysX
 	SolidoRigido* _bloqueadoInerciaManual; // Actividad 3: igual que _bloqueado pero con inercia calculada a mano
+
+	bool _vientoOn;
+	bool _torbellinoOn;
 };

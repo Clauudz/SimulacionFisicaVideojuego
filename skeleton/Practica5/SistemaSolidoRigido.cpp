@@ -52,6 +52,7 @@ void SistemaSolidoRigido::agregar(SolidoRigido* solido)
 	_solidos.push_back(solido);
 	if (_gravedadActiva) _registro.addRegistry(&_gravedad, solido);
 	if (_vientoActivo) _registro.addRegistry(&_viento, solido);
+	if (_torbellinoActivo) _registro.addRegistry(&_torbellino, solido);
 }
 
 void SistemaSolidoRigido::activarGeneracion(bool activa)
@@ -73,6 +74,12 @@ void SistemaSolidoRigido::activarViento(bool activa, Vector3 vel)
 {
 	_vientoActivo = activa;
 	_viento.setVelocidad(vel);
+}
+
+void SistemaSolidoRigido::activarTorbellino(bool activa, float k)
+{
+	_torbellinoActivo = activa;
+	_torbellino.setIntensidad(k);
 }
 
 void SistemaSolidoRigido::generadorSR()
@@ -99,7 +106,7 @@ SolidoRigido* SistemaSolidoRigido::crearCajaDinamica(PxPhysics* physics, PxScene
 	PxShape* forma = CreateShape(PxBoxGeometry(mitades));
 	actor->attachShape(*forma);
 	PxRigidBodyExt::updateMassAndInertia(*actor, densidad);
-	actor->setActorFlag(PxActorFlag::eDISABLE_GRAVITY, false); // Si queremos usar la nuestra desactivar
+	actor->setActorFlag(PxActorFlag::eDISABLE_GRAVITY, true); // Si queremos usar la nuestra desactivar
 	scene->addActor(*actor);
 
 	// Generamos un renderizado visual del SR dentro de nuestro espacio de renderizado.

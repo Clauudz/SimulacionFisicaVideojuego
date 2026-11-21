@@ -10,6 +10,8 @@ EscenaSolidosRigidos::EscenaSolidosRigidos()
 	_suelo = nullptr;
 	_bloqueado = nullptr;
 	_bloqueadoInerciaManual = nullptr;
+	_vientoOn = false;
+	_torbellinoOn = false;
 }
 
 EscenaSolidosRigidos::~EscenaSolidosRigidos()
@@ -44,10 +46,19 @@ void EscenaSolidosRigidos::keyPress(unsigned char key)
 	case 'Y':
 		_activa = !_activa;
 		break;
-
+	case 'V':
+		if (!_activa) break;
+		_vientoOn = !_vientoOn;
+		_sistema->activarViento(_vientoOn);
+		break;
+	case 'T':
+		if (!_activa) break;
+		_torbellinoOn = !_torbellinoOn;
+		_sistema->activarTorbellino(_torbellinoOn);
+		break;
 	case '1':
 		if (!_activa) break;
-			//_sistema->activarGravedad(true);
+			_sistema->activarGravedad(!_sistema->getGravedadActiva());
 		break;
 
 

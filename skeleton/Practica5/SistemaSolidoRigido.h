@@ -25,6 +25,7 @@ public:
 	void activarGeneracion(bool activa);
 	void setDensidad(float densidad);
 	inline float getDensidad() const { return _densidad; }
+	bool getGravedadActiva() const { return _gravedadActiva; }
 
 	// La gravedad se trata como cualquier otro generador de fuerza: activarla aqui solo la registra
 	// para los solidos nuevos que se añadan al sistema; sois vosotros quienes debeis aseguraros de no
@@ -32,6 +33,7 @@ public:
 	// o el solido caera con el doble de aceleracion.
 	void activarGravedad(bool activa);
 	void activarViento(bool activa, Vector3 vel = Vector3(20.0f, 0.0f, 0.0f));
+	void activarTorbellino(bool activa, float k = 5.f);
 
 	inline const std::vector<SolidoRigido*>& getSolidos() const { return _solidos; }
 
@@ -62,6 +64,7 @@ protected:
 
 	bool _gravedadActiva;
 	bool _vientoActivo;
+	bool _torbellinoActivo;
 
 	Vector3 _origen;
 	Vector3 _velocidadMedia;
