@@ -29,7 +29,13 @@ void SolidoRigido::bloquearTraslacion()
 
 Vector3 SolidoRigido::calcularInerciaCaja(float masa, Vector3 mitades)
 {
-	// TODO Actividad 2: usa la formula del cuboide solido del Anexo (a partir de las semi-medidas "mitades") para
-	// devolver el tensor de inercia (Ix,Iy,Iz). De momento devuelve un valor cualquiera para que compile.
-	return Vector3(1.0f, 1.0f, 1.0f);
+	float ladoX = 2.f * mitades.x;
+	float ladoY = 2.f * mitades.y;
+	float ladoZ = 2.f * mitades.z;
+
+	float Ix = masa / 12.f * (ladoY * ladoY + ladoZ * ladoZ);
+	float Iy = masa / 12.f * (ladoX * ladoX + ladoZ * ladoZ);
+	float Iz = masa / 12.f * (ladoX * ladoX + ladoY * ladoY);
+
+	return Vector3(Ix, Iy, Iz);
 }

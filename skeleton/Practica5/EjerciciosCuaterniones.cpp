@@ -186,26 +186,42 @@ PxQuat EjerciciosCuaterniones::ejercicio1a()
 {
 	// TODO: matriz de rotacion de 30 grados respecto al eje "x".
 	float a = PxPi / 6.0f; // 30 grados
-	PxMat33 m(Vector3(1.0f, 0.0f, 0.0f), Vector3(0.0f, 1.0f, 0.0f), Vector3(0.0f, 0.0f, 1.0f)); // Cambia la matriz a la que hayas calculado
+	float c = cosf(a);
+	float s = sinf(a);
+	PxMat33 m(Vector3(1.0f, 0.0f, 0.0f),
+			  Vector3(0.0f, c, s),
+			  Vector3(0.0f, -s, c)); // Cambia la matriz a la que hayas calculado
 	return PxQuat(m);
 }
 
 PxQuat EjerciciosCuaterniones::ejercicio1b()
 {
 	// TODO: matriz de rotacion de 60 grados respecto al eje "y".
-	return PxQuat(PxIdentity); // Cambia PxIdentity por m cuando la tengas definida (ver ejemplo arriba)
+	float a = PxPi / 3.0f; // 60 grados
+	float c = cosf(a);
+	float s = sinf(a);
+	PxMat33 m(Vector3(c, 0.0f, -s),
+			  Vector3(0.0f, 1.f, 0.f),
+			  Vector3(s, 0.f, c)); // Cambia la matriz a la que hayas calculado
+	return PxQuat(m);
 }
 
 PxQuat EjerciciosCuaterniones::ejercicio1c()
 {
 	// TODO: matriz de rotacion de 180 grados respecto al eje "z".
-	return PxQuat(PxIdentity); // Cambia PxIdentity por m cuando la tengas definida (ver ejemplo arriba)
+	float a = PxPi; // 180 grados
+	float c = cosf(a);
+	float s = sinf(a);
+	PxMat33 m(Vector3(c, s, 0.0f),
+			  Vector3(-s, c, 0.f),
+			  Vector3(0.0f, 0.f, 1.f)); // Cambia la matriz a la que hayas calculado
+	return PxQuat(m);
 }
 
 PxQuat EjerciciosCuaterniones::ejercicio2()
 {
 	// TODO: angulos de Euler intrinsecos z-x-z equivalentes al ejercicio 1a.
-	float z1 = 0.0f, x = 0.0f, z2 = 0.0f; //Cambiar a los ángulos de rotación correspondientes
+	float z1 = 0.0f, x = PxPi / 6.f, z2 = 0.0f; //Cambiar a los ángulos de rotación correspondientes
 	// Aquí los cuaterniones se definen como pares de rotación (w, (nx,ny,nz)) como los vistos en clase.
 	// Los ejes ya son los de la convencion Z-X-Z; PxQuat exige que el eje sea unitario incluso con angulo 0,
 	// por eso no pueden ser (0,0,0).
@@ -219,21 +235,29 @@ PxQuat EjerciciosCuaterniones::ejercicio2()
 PxQuat EjerciciosCuaterniones::ejercicio3()
 {
 	// TODO: eje y angulo de rotacion equivalentes al ejercicio 1a.
-	return PxQuat(PxIdentity); //Cambiar PxIdentity por el cuaternion definido.
+	float ang = PxPi / 6.f;
+	return PxQuat(ang, Vector3(1.f, 0.f, 0.f)); //Cambiar PxIdentity por el cuaternion definido.
 }
 
 PxQuat EjerciciosCuaterniones::ejercicio4()
 {
 	// TODO: cuaternion (calculado a mano con la formula del angulo mitad) equivalente al ejercicio 1a.
 	// En este ejercicio construiremos el cuaternión usando directamente la definición de cuaternión.
-	// PxQuat(q.x, q.y, q.z, cos(theta/2.0f))
-	return PxQuat(PxIdentity); //Cambiar PxIdentity por el cuaternion definido.
+	//PxQuat(q.x, q.y, q.z, cos(theta/2.0f))
+	float ang = PxPi / 6.f;
+	return PxQuat(sin(ang / 2.f),0.f, 0.f, cos(ang / 2.0f)); //Cambiar PxIdentity por el cuaternion definido.
 }
 
 PxQuat EjerciciosCuaterniones::ejercicio5()
 {
 	// TODO: angulos de Euler intrinsecos z-y-z equivalentes al ejercicio 1a (Ver ejercicio 2)
-	return PxQuat(PxIdentity); //Cambiar PxIdentity por el cuaternion definido.
+	float z1 = -PxPi / 2.f, y = PxPi / 6.f, z2 = PxPi / 2.f; //Cambiar a los ángulos de rotación correspondientes
+
+	PxQuat qz1(z1, Vector3(0.0f, 0.0f, 1.0f));
+	PxQuat qx(y, Vector3(0.0f, 1.0f, 0.0f));
+	PxQuat qz2(z2, Vector3(0.0f, 0.0f, 1.0f));
+
+	return qz1 * qx * qz2;
 }
 
 PxQuat EjerciciosCuaterniones::ejercicio6()
@@ -242,7 +266,8 @@ PxQuat EjerciciosCuaterniones::ejercicio6()
 	// Una forma de hacerlo sería construir directamente un cuaternión con dicha matriz de rotación como en el ejercicio 1.
 	// Sin embargo en este ejercicio el objetivo es calcular el cuaternión a mano y luego comprobarlo aquí.
 	// PxQuat(q.x, q.y, q.z, cos(theta/2.0f))
-	return PxQuat(PxIdentity); //Cambiar PxIdentity por el cuaternion definido.
+	float ang = PxPi / 4.f;
+	return PxQuat(0.f, 0.f, sin(ang / 2.f), cos(ang / 2.0f)); //Cambiar PxIdentity por el cuaternion definido.
 }
 
 PxQuat EjerciciosCuaterniones::ejercicio7()
@@ -250,24 +275,52 @@ PxQuat EjerciciosCuaterniones::ejercicio7()
 	// TODO: matriz de rotacion extrinseca: 25 grados respecto al eje "y" seguido de 50 grados respecto al eje "x".
 	// Viendo los apuntes una matriz de rotación extrínsica es equivalente a R' = R2*R1
 	// Definir las matrices de rotación como el Ejercicio 1 y luego:
-	// PxMat33 mTotal = m2 * m1; //Usar mTotal para construir el cuaternión final.
-	return PxQuat(PxIdentity);
+	float a1 = 25.f * PxPi / 180.0f; // 25 grados
+	float c1 = cosf(a1);
+	float s1 = sinf(a1);
+
+	PxMat33 m1(Vector3(c1, 0.0f, -s1),
+			  Vector3(0.0f, 1.f, 0.f),
+			  Vector3(s1, 0.f, c1)); // Cambia la matriz a la que hayas calculado
+
+	float a2 = 50.f * PxPi / 180.0f; // 50 grados
+	float c2 = cosf(a2);
+	float s2 = sinf(a2);
+	PxMat33 m2(Vector3(1.0f, 0.0f, 0.0f),
+			   Vector3(0.0f, c2, s2),
+			   Vector3(0.0f, -s2, c2)); // Cambia la matriz a la que hayas calculado
+
+	PxMat33 mTotal = m2 * m1; //Usar mTotal para construir el cuaternión final.
+	return PxQuat(mTotal);
 }
 
 PxQuat EjerciciosCuaterniones::ejercicio8()
 {
 	// TODO: cuaternion que representa la misma rotacion que el ejercicio 7.
-	return PxQuat(PxIdentity);
+	float ang1 = 25.f * PxPi / 180.0f; // 25 grados
+	PxQuat q1(0.f, sin(ang1 / 2.f), 0.f, cos(ang1 / 2.0f));
+
+	float ang2 = 50.f * PxPi / 180.0f; // 25 grados
+	PxQuat q2(sin(ang2 / 2.f), 0.f, 0.f, cos(ang2 / 2.0f));
+	return PxQuat(q2 * q1);
 }
 
 Vector3 EjerciciosCuaterniones::ejercicio9_1()
 {
 	// TODO: donde queda P=(10,20,30) tras rotarlo con el cuaternion Q=(0.98,0,0.22,0) del enunciado (w,x,y,z).
-	return Vector3(0.0f, 0.0f, 0.0f); //Devolver P rotado
+	PxQuat q(0.0f, 0.22f, 0.0f, 0.98f);
+	q = q.getNormalized();
+
+	Vector3 P(10.0f, 20.0f, 30.0f);
+	return q.rotate(P); //Devolver P rotado
 }
 
 Vector3 EjerciciosCuaterniones::ejercicio9_2()
 {
 	// TODO: donde queda P=(0,0,0) tras la misma rotacion? Piensa por que pasa esto.
-	return Vector3(0.0f, 0.0f, 0.0f); //Devolver P rotado
+	PxQuat q(0.0f, 0.22f, 0.0f, 0.98f);
+	q = q.getNormalized();
+
+	Vector3 P(0.f, 0.f, 0.f);
+	return q.rotate(P); //Devolver P rotado
 }
