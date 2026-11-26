@@ -12,6 +12,7 @@ SistemaSolidoRigido::SistemaSolidoRigido(PxPhysics* physics, PxScene* scene) : _
 
 	_gravedadActiva = false;
 	_vientoActivo = false;
+	_torbellinoActivo = false;
 
 	_origen = Vector3(0.0f, 20.0f, 0.0f);
 	_velocidadMedia = Vector3(0.0f, 0.0f, 0.0f);

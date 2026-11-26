@@ -29,6 +29,7 @@
 #include "P4_Scene.h"
 #include "Practica5/EscenaSolidosRigidos.h"
 #include "Practica5/EjerciciosCuaterniones.h"
+#include "EscenaJuego.h"
 
 #include <foundation/PxSimpleTypes.h>
 #include <PxPhysicsVersion.h> // <- Macros for PhysX version checking
@@ -106,7 +107,7 @@ void initPhysics(bool interactive)
 	sceneDesc.simulationEventCallback = &gContactReportCallback;
 	gScene = gPhysics->createScene(sceneDesc);
 	// Registrar las prácticas/escenas del curso
-	SceneManager::instance().registerScene<EmptyScene>("EscenaVacia");
+	SceneManager::instance().registerScene<EscenaJuego>("EscenaVacia");
 	SceneManager::instance().registerScene<P0_Scene>("Escena0");
 	SceneManager::instance().registerScene<P1_Scene>("Escena1");
 	SceneManager::instance().registerScene<P2_Scene>("Escena2");
@@ -138,10 +139,10 @@ void stepPhysics(bool interactive, double t)
 	// This loop allows for multiple physics steps if the accumulated time exceeds the fixed timestep
 	while (gPhysicsTimeAccumulator >= gFixedTimestep)
 	{
-		gEscenaP5.update(static_cast<float>(gFixedTimestep));
-		// simulate() arranca la simulación de forma asíncrona en el hilo de físicas
+		//gEscenaP5.update(static_cast<float>(gFixedTimestep));
+		//simulate() arranca la simulación de forma asíncrona en el hilo de físicas
 		gScene->simulate(static_cast<PxReal>(gFixedTimestep));
-		//SceneManager::instance().update(gFixedTimestep);
+		SceneManager::instance().update(gFixedTimestep);
 
 		// fetchResults(true) bloquea el hilo de renderizado hasta que la física termine.
 		// En prácticas avanzadas es vital para que el renderizado no lea datos corruptos.

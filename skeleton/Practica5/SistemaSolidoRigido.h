@@ -22,6 +22,10 @@ public:
 	// ninguno lo esta: un solido nuevo usa la gravedad automatica de PhysX hasta que activeis la manual).
 	void agregar(SolidoRigido* solido);
 
+	// Registra un generador de fuerza externo (p.ej. un planeta) para un solido del sistema.
+	void agregarFuerza(GeneradorFuerzaSR* gen, SolidoRigido* solido) { _registro.addRegistry(gen, solido); }
+	void quitarFuerza(GeneradorFuerzaSR* gen) { _registro.deleteGenerador(gen); }
+
 	void activarGeneracion(bool activa);
 	void setDensidad(float densidad);
 	inline float getDensidad() const { return _densidad; }

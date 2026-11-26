@@ -12,17 +12,7 @@
     <ClCompile Include="callbacks.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="SceneManager.cpp" />
-    <ClCompile Include="P0_Scene.cpp" />
-    <ClCompile Include="Particula.cpp" />
-    <ClCompile Include="P1_Scene.cpp" />
-    <ClCompile Include="Proyectil.cpp" />
-    <ClCompile Include="SistemaParticulas.cpp" />
-    <ClCompile Include="Generador.cpp" />
     <ClCompile Include="Distribucion.h" />
-    <ClCompile Include="P2_Scene.cpp" />
-    <ClCompile Include="ParticulaJerarquica.cpp" />
-    <ClCompile Include="P3_Scene.cpp" />
-    <ClCompile Include="P4_Scene.cpp" />
     <ClCompile Include="Practica5\EjerciciosCuaterniones.cpp">
       <Filter>Practica5</Filter>
     </ClCompile>
@@ -47,6 +37,42 @@
     <ClCompile Include="Practica5\VientoSR.cpp">
       <Filter>Practica5</Filter>
     </ClCompile>
+    <ClCompile Include="EscenaJuego.cpp">
+      <Filter>JuegoFinal</Filter>
+    </ClCompile>
+    <ClCompile Include="Generador.cpp">
+      <Filter>Practicas1-4</Filter>
+    </ClCompile>
+    <ClCompile Include="P0_Scene.cpp">
+      <Filter>Practicas1-4</Filter>
+    </ClCompile>
+    <ClCompile Include="P1_Scene.cpp">
+      <Filter>Practicas1-4</Filter>
+    </ClCompile>
+    <ClCompile Include="P2_Scene.cpp">
+      <Filter>Practicas1-4</Filter>
+    </ClCompile>
+    <ClCompile Include="P3_Scene.cpp">
+      <Filter>Practicas1-4</Filter>
+    </ClCompile>
+    <ClCompile Include="P4_Scene.cpp">
+      <Filter>Practicas1-4</Filter>
+    </ClCompile>
+    <ClCompile Include="Particula.cpp">
+      <Filter>Practicas1-4</Filter>
+    </ClCompile>
+    <ClCompile Include="ParticulaJerarquica.cpp">
+      <Filter>Practicas1-4</Filter>
+    </ClCompile>
+    <ClCompile Include="Proyectil.cpp">
+      <Filter>Practicas1-4</Filter>
+    </ClCompile>
+    <ClCompile Include="SistemaParticulas.cpp">
+      <Filter>Practicas1-4</Filter>
+    </ClCompile>
+    <ClCompile Include="GravedadPlanetariaSR.cpp">
+      <Filter>JuegoFinal</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="core.hpp" />
@@ -62,17 +88,6 @@
     <ClInclude Include="SceneManager.h" />
     <ClInclude Include="EmptyScene.h" />
     <ClInclude Include="Vector3D.h" />
-    <ClInclude Include="P0_Scene.h" />
-    <ClInclude Include="Particula.h" />
-    <ClInclude Include="P1_Scene.h" />
-    <ClInclude Include="Proyectil.h" />
-    <ClInclude Include="SistemaParticulas.h" />
-    <ClInclude Include="Generador.h" />
-    <ClInclude Include="P2_Scene.h" />
-    <ClInclude Include="ParticulaJerarquica.h" />
-    <ClInclude Include="P3_Scene.h" />
-    <ClInclude Include="ForceGenerator.h" />
-    <ClInclude Include="P4_Scene.h" />
     <ClInclude Include="Practica5\RegistroFuerzasSR.hpp" />
     <ClInclude Include="Practica5\EjerciciosCuaterniones.h">
       <Filter>Practica5</Filter>
@@ -81,9 +96,6 @@
       <Filter>Practica5</Filter>
     </ClInclude>
     <ClInclude Include="Practica5\EscenaJoints.h">
-      <Filter>Practica5</Filter>
-    </ClInclude>
-    <ClInclude Include="Practica5\GeneradorFuerzaSR.h">
       <Filter>Practica5</Filter>
     </ClInclude>
     <ClInclude Include="Practica5\GravedadSR.h">
@@ -101,10 +113,58 @@
     <ClInclude Include="Practica5\VientoSR.h">
       <Filter>Practica5</Filter>
     </ClInclude>
+    <ClInclude Include="EscenaJuego.h">
+      <Filter>JuegoFinal</Filter>
+    </ClInclude>
+    <ClInclude Include="Generador.h">
+      <Filter>Practicas1-4</Filter>
+    </ClInclude>
+    <ClInclude Include="ForceGenerator.h">
+      <Filter>Practicas1-4</Filter>
+    </ClInclude>
+    <ClInclude Include="P0_Scene.h">
+      <Filter>Practicas1-4</Filter>
+    </ClInclude>
+    <ClInclude Include="P1_Scene.h">
+      <Filter>Practicas1-4</Filter>
+    </ClInclude>
+    <ClInclude Include="P2_Scene.h">
+      <Filter>Practicas1-4</Filter>
+    </ClInclude>
+    <ClInclude Include="P3_Scene.h">
+      <Filter>Practicas1-4</Filter>
+    </ClInclude>
+    <ClInclude Include="P4_Scene.h">
+      <Filter>Practicas1-4</Filter>
+    </ClInclude>
+    <ClInclude Include="Particula.h">
+      <Filter>Practicas1-4</Filter>
+    </ClInclude>
+    <ClInclude Include="ParticulaJerarquica.h">
+      <Filter>Practicas1-4</Filter>
+    </ClInclude>
+    <ClInclude Include="Proyectil.h">
+      <Filter>Practicas1-4</Filter>
+    </ClInclude>
+    <ClInclude Include="SistemaParticulas.h">
+      <Filter>Practicas1-4</Filter>
+    </ClInclude>
+    <ClInclude Include="GravedadPlanetariaSR.h">
+      <Filter>JuegoFinal</Filter>
+    </ClInclude>
+    <ClInclude Include="Practica5\GeneradorFuerzaSR.h">
+      <Filter>Practica5</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Render">
       <UniqueIdentifier>{d04b4f9f-5a69-465e-8070-25c6d0bcd3c2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="JuegoFinal">
+      <UniqueIdentifier>{d79b3f2f-cedf-4518-8e8d-b2e35b777da1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Practicas1-4">
+      <UniqueIdentifier>{c0f5c723-1cd3-44e1-9250-f1ef1f3fdba1}</UniqueIdentifier>
     </Filter>
     <Filter Include="Practica5">
       <UniqueIdentifier>{c9cc540e-b73a-455e-8505-1e818ea303d6}</UniqueIdentifier>

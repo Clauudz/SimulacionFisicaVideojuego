@@ -263,7 +263,9 @@
   <ItemGroup>
     <ClCompile Include="callbacks.cpp" />
     <ClCompile Include="Distribucion.h" />
+    <ClCompile Include="EscenaJuego.cpp" />
     <ClCompile Include="Generador.cpp" />
+    <ClCompile Include="GravedadPlanetariaSR.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="P0_Scene.cpp" />
     <ClCompile Include="P1_Scene.cpp" />
@@ -292,8 +294,10 @@
     <ClInclude Include="callbacks.hpp" />
     <ClInclude Include="core.hpp" />
     <ClInclude Include="EmptyScene.h" />
+    <ClInclude Include="EscenaJuego.h" />
     <ClInclude Include="ForceGenerator.h" />
     <ClInclude Include="Generador.h" />
+    <ClInclude Include="GravedadPlanetariaSR.h" />
     <ClInclude Include="P0_Scene.h" />
     <ClInclude Include="P1_Scene.h" />
     <ClInclude Include="P2_Scene.h" />

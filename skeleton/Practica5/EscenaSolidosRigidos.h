@@ -1,6 +1,7 @@
 #pragma once
 #include "SolidoRigido.h"
 #include "SistemaSolidoRigido.h"
+#include "../GravedadPlanetariaSR.h"
 
 class EscenaSolidosRigidos {
 public:
@@ -24,4 +25,7 @@ protected:
 
 	bool _vientoOn;
 	bool _torbellinoOn;
+
+	GravedadPlanetariaSR* _gravPlaneta;
+	SolidoRigido* _planeta;
 };

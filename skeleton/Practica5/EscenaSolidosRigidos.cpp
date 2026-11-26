@@ -12,6 +12,8 @@ EscenaSolidosRigidos::EscenaSolidosRigidos()
 	_bloqueadoInerciaManual = nullptr;
 	_vientoOn = false;
 	_torbellinoOn = false;
+	_planeta = nullptr;
+	_gravPlaneta = nullptr;
 }
 
 EscenaSolidosRigidos::~EscenaSolidosRigidos()
@@ -38,6 +40,8 @@ void EscenaSolidosRigidos::cleanup()
 	delete _suelo; _suelo = nullptr;
 	delete _bloqueado; _bloqueado = nullptr;
 	delete _bloqueadoInerciaManual; _bloqueadoInerciaManual = nullptr;
+	delete _planeta; _planeta = nullptr;
+	delete _gravPlaneta; _gravPlaneta = nullptr;
 }
 
 void EscenaSolidosRigidos::keyPress(unsigned char key)
@@ -123,11 +127,36 @@ void EscenaSolidosRigidos::keyPress(unsigned char key)
 		delete _suelo;
 		delete _bloqueado;
 		delete _bloqueadoInerciaManual;
+		delete _planeta; _planeta = nullptr;
+		delete _gravPlaneta; _gravPlaneta = nullptr;
 		_sistema = new SistemaSolidoRigido(_physics, _scene);
 		_suelo = nullptr;
 		_bloqueado = nullptr;
 		_bloqueadoInerciaManual = nullptr;
 		break;
+	case 'O':
+		if (!_activa) break;
+		{
+			Vector3 centro(0.0f, 15.0f, 0.0f);
+
+			// El planeta y su gravedad solo se crean la primera vez
+			if (!_gravPlaneta) {
+				_planeta = SistemaSolidoRigido::crearCajaEstatica(_physics, _scene, PxTransform(centro),
+					Vector3(1.0f, 1.0f, 1.0f), Vector4(1.0f, 0.6f, 0.1f, 1.0f));
+				_gravPlaneta = new GravedadPlanetariaSR(centro, 1000.0f, 100.0f, 0.1f);
+			}
+
+			// Cada pulsacion lanza un proyectil nuevo
+			// El proyectil: a 20 del centro, con la velocidad de orbita circular v = sqrt(G*M/r)
+			SolidoRigido* p = SistemaSolidoRigido::crearCajaDinamica(_physics, _scene,
+				PxTransform(centro + Vector3(20.0f, 0.0f, 0.0f)), Vector3(0.5f, 0.5f, 0.5f), 1.0f,
+				Vector4(0.2f, 0.8f, 1.0f, 1.0f), 60.0f);
+			p->comprobarDinamico()->setLinearVelocity(Vector3(0.0f, 0.0f, 7.07f));
+
+			_sistema->agregar(p);
+			_sistema->agregarFuerza(_gravPlaneta, p);
+		}
+	break;
 
 	default:
 		break;
