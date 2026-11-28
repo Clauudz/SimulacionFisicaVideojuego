@@ -141,3 +141,31 @@ SolidoRigido* SistemaSolidoRigido::crearCajaDinamicaInerciaManual(PxPhysics* phy
 	RenderItem* ri = new RenderItem(forma, actor, color);
 	return new SolidoRigido(actor, ri, "caja_inercia", vidaMax);
 }
+
+SolidoRigido* SistemaSolidoRigido::crearEsferaEstatica(PxPhysics* physics, PxScene* scene, PxTransform pose, float radio, Vector4 color)
+{
+	// Genero un solido rigido estatico (SR) de Physx segun lo visto en la teoria.
+	PxRigidStatic* actor = physics->createRigidStatic(pose);
+	PxShape* forma = CreateShape(PxSphereGeometry(radio));
+	actor->attachShape(*forma);
+	scene->addActor(*actor);
+
+	// Genero un renderizado visual del SR dentro de nuestro espacio de renderizado.
+	RenderItem* ri = new RenderItem(forma, actor, color);
+	return new SolidoRigido(actor, ri, "esfera", -1.0f);
+}
+
+SolidoRigido* SistemaSolidoRigido::crearEsferaDinamica(PxPhysics* physics, PxScene* scene, PxTransform pose, float radio, float masa, Vector4 color, float vidaMax)
+{
+	// Creamos el solido rigido (SR) de Physx segun lo visto en la teoria.
+	PxRigidDynamic* actor = physics->createRigidDynamic(pose);
+	PxShape* forma = CreateShape(PxSphereGeometry(radio));
+	actor->attachShape(*forma);
+	PxRigidBodyExt::setMassAndUpdateInertia(*actor, masa);
+	actor->setActorFlag(PxActorFlag::eDISABLE_GRAVITY, true); // Si queremos usar la nuestra desactivar
+	scene->addActor(*actor);
+
+	// Generamos un renderizado visual del SR dentro de nuestro espacio de renderizado.
+	RenderItem* ri = new RenderItem(forma, actor, color);
+	return new SolidoRigido(actor, ri, "esfera_dinamica", vidaMax);
+}

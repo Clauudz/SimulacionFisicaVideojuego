@@ -87,6 +87,7 @@
       </PrecompiledHeaderFile>
       <ProgramDataBaseFileName>$(TargetDir)\$(TargetName).pdb</ProgramDataBaseFileName>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <AdditionalOptions>
@@ -262,6 +263,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="callbacks.cpp" />
+    <ClCompile Include="Canon.cpp" />
     <ClCompile Include="Distribucion.h" />
     <ClCompile Include="EscenaJuego.cpp" />
     <ClCompile Include="Generador.cpp" />
@@ -292,6 +294,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="callbacks.hpp" />
+    <ClInclude Include="Canon.h" />
     <ClInclude Include="core.hpp" />
     <ClInclude Include="EmptyScene.h" />
     <ClInclude Include="EscenaJuego.h" />

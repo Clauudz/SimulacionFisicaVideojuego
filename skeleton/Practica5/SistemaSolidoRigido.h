@@ -45,7 +45,9 @@ public:
 	static SolidoRigido* crearCajaDinamica(PxPhysics* physics, PxScene* scene, PxTransform pose, Vector3 mitades, float densidad, Vector4 color, float vidaMax = -1.0f);
 	static SolidoRigido* crearCajaEstatica(PxPhysics* physics, PxScene* scene, PxTransform pose, Vector3 mitades, Vector4 color);
 	static SolidoRigido* crearCajaDinamicaInerciaManual(PxPhysics* physics, PxScene* scene, PxTransform pose, Vector3 mitades, float masa, Vector3 inercia, Vector4 color, float vidaMax = -1.0f);
-
+	//esfera
+	static SolidoRigido* crearEsferaEstatica(PxPhysics* physics, PxScene* scene, PxTransform pose, float radio, Vector4 color);
+	static SolidoRigido* crearEsferaDinamica(PxPhysics* physics, PxScene* scene, PxTransform pose, float radio, float masa, Vector4 color, float vidaMax = -1.0f);
 protected:
 	// Genera un nuevo solido en una posicion con dispersion uniforme y con una velocidad que sigue una
 	// distribucion gaussiana (media y desviacion tipica definidas como constantes dentro de la funcion).

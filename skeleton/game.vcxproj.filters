@@ -73,6 +73,9 @@
     <ClCompile Include="GravedadPlanetariaSR.cpp">
       <Filter>JuegoFinal</Filter>
     </ClCompile>
+    <ClCompile Include="Canon.cpp">
+      <Filter>JuegoFinal</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="core.hpp" />
@@ -154,6 +157,9 @@
     </ClInclude>
     <ClInclude Include="Practica5\GeneradorFuerzaSR.h">
       <Filter>Practica5</Filter>
+    </ClInclude>
+    <ClInclude Include="Canon.h">
+      <Filter>JuegoFinal</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

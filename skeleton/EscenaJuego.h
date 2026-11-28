@@ -3,6 +3,9 @@
 #include "Practica5/SolidoRigido.h"
 #include "Practica5/SistemaSolidoRigido.h"
 #include "GravedadPlanetariaSR.h"
+#include "Canon.h"
+
+using namespace physx;
 
 class EscenaJuego : public Scene
 {
@@ -21,5 +24,8 @@ private:
     GravedadPlanetariaSR* _gravPlaneta = nullptr;
     SolidoRigido* _planeta = nullptr;
     SistemaSolidoRigido* _sistema = nullptr;
+    Canon* _canon;
+
+    void mostrarEstado();
 };
 
